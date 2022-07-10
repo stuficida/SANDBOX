@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <!-- <canvas id="a" width="1000" height="1000"></canvas> -->
+        <div class="a"></div>
+        <div class="box" style="width: 100px; height: 100px; position: absolute; top: 0; left: 0; background-color: blue;"></div>
+
+        <script src="../scripts/SimpleUI.js"></script>
+
+        <script>
+
+            // function wave(points, width, height) {
+            //     let canvas = document.createElement("canvas");
+            //     canvas.className = "wave";
+                
+            //     canvas.width = width; canvas.height = height;
+
+            //     let ctx = canvas.getContext("2d");
+
+            //     ctx.beginPath();
+            //     ctx.moveTo(0, height / 2);
+
+            //     let gx = (width / points) / 2; let middle = gx / 2;
+            //     let x = 0;
+
+            //     for(let i = 1; i <= points; ++i) {
+            //         ctx.quadraticCurveTo(x + middle, 0, x += gx, height / 2);
+            //         ctx.quadraticCurveTo(x + middle, height, x += gx, height / 2);
+            //     }
+
+            //     ctx.stroke();
+
+            //     return canvas;
+            // }
+            
+            let width = document.body.offsetWidth;
+
+            let a = document.querySelector(".a");
+            // a.appendChild(wave(8, width, 200));
+            let w = new SimpleWave(a);
+            w.draw(width, 75, 4, 2.5, 10);
+
+            let box = document.querySelector(".box");
+            let x = width / 4 + width / 8 / 2;
+
+            box.style.left = x + "px";
+            setInterval(function() {
+                box.style.top = (w.graph(x) * 0.6) + "px";
+                
+            }, 10);
+        </script>
+    </body>
+</html>
